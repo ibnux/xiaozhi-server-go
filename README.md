@@ -1,141 +1,142 @@
-# ✨ 小智 AI 聊天机器人后端服务（商业版）
+# ✨ Layanan Backend Chatbot AI Xiaozhi (Versi Komersial)
 
-小智 AI 是一个语音交互机器人，结合 Qwen、DeepSeek 等强大大模型，通过 MCP 协议连接多端设备（ESP32、Android、Python 等），实现高效自然的人机对话。
+Xiaozhi AI adalah robot interaksi suara yang menggabungkan model bahasa besar seperti Qwen dan DeepSeek, terhubung ke berbagai perangkat (ESP32, Android, Python, dll.) melalui protokol MCP untuk menghadirkan percakapan manusia-mesin yang efisien dan alami.
 
-本项目是其后端服务，旨在提供一套 **商业级部署方案** —— 高并发、低成本、功能完整、开箱即用。
+Proyek ini adalah layanan backend yang bertujuan menyediakan **solusi deployment tingkat komersial** — konkurensi tinggi, biaya rendah, fitur lengkap, dan siap pakai.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/aa1e2f26-92d3-4d16-a74a-68232f34cca3" alt="Xiaozhi Architecture" width="600">
 </p>
 
-项目初始基于 [虾哥的 ESP32 开源项目](https://github.com/78/xiaozhi-esp32?tab=readme-ov-file)，目前已形成完整生态，支持多种客户端协议兼容接入。
+Proyek ini awalnya berbasis [proyek open-source ESP32 dari Xia Ge](https://github.com/78/xiaozhi-esp32?tab=readme-ov-file) dan kini telah membentuk ekosistem lengkap dengan dukungan berbagai protokol klien.
 
 ---
 
-## ✨ 核心优势
+## ✨ Keunggulan Utama
 
-| 优势         | 说明                                                   |
-| ---------- | ---------------------------------------------------- |
-| 🚀 高并发     | 单机支持 3000+ 在线，分布式可扩展至百万用户                            |
-| 👥 用户系统    | 完整的用户注册、登录、权限管理能力                                    |
-| 💰 支付集成    | 接入支付系统，助力商业闭环                                        |
-| 🛠️ 模型接入灵活 | 支持通过 API 调用多种大模型，简化部署，支持定制本地部署                       |
-| 📈 商业支持    | 提供 7×24 技术支持与运维保障                                    |
-| 🧠 模型兼容    | 支持 ASR（豆包）、TTS（EdgeTTS）、LLM（OpenAI、Ollama）、图文解说（智谱）等 |
+| Keunggulan              | Keterangan                                                                         |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| �� Konkurensi Tinggi    | Mendukung 3000+ pengguna online di satu mesin, dapat diskalakan hingga jutaan pengguna secara terdistribusi |
+| 👥 Sistem Pengguna      | Kemampuan registrasi, login, dan manajemen izin pengguna yang lengkap              |
+| 💰 Integrasi Pembayaran | Terhubung dengan sistem pembayaran untuk mendukung bisnis end-to-end               |
+| 🛠️ Integrasi Model Fleksibel | Mendukung pemanggilan berbagai model besar melalui API, penyederhanaan deployment, dan dukungan deployment lokal kustom |
+| 📈 Dukungan Komersial   | Menyediakan dukungan teknis 7×24 dan jaminan operasional                           |
+| 🧠 Kompatibilitas Model | Mendukung ASR (Doubao), TTS (EdgeTTS), LLM (OpenAI, Ollama), analisis gambar (Zhipu), dll. |
 
 ---
 
-## ✅ 社区版功能清单
+## ✅ Daftar Fitur Versi Komunitas
 
-* [x] 支持 websocket 连接
-* [x] 支持 PCM / Opus 格式语音对话
-* [x] 支持大模型：ASR（豆包流式）、TTS（EdgeTTS/豆包）、LLM（OpenAI API、Ollama）
-* [x] 支持语音控制调用摄像头识别图像（智谱 API）
-* [x] 支持 auto/manual/realtime 三种对话模式，支持对话实时打断
-* [x] 支持 ESP32 小智客户端、Python 客户端、Android 客户端连入，无需校验
-* [x] OTA 固件下发
-* [x] 支持 MCP 协议（客户端 / 本地 / 服务器），可接入高德地图、天气查询等
-* [x] 支持语音控制切换角色声音
-* [x] 支持语音控制切换预设角色
-* [x] 支持语音控制播放音乐
-* [x] 支持单机部署服务
-* [x] 支持本地数据库 sqlite
-* [x] 支持coze工作流 
-* [x] 支持Docker部署
-## ✅商务版功能清单
-* [x] 社区版所有功能
-* [x] 开发团队技术支持
-* [x] 后续核心功能免费更新
-* [x] 商务版管理后台，更多的功能选项
-* [x] 支持多用户管理
-* [x] 自定义修改欢迎界面
-* [x] 自定义修改版权logo，使用自己公司的商务标识
-* [x] 自定义修改Agent角色模板
-* [x] 支持更多的模型
-* [x] 支持 websocket 和 MQTT+UDP 两种通信协议
-* [x] 支持 tts 流式生成及发送
-* [x] 支持声音克隆
-* [x] 支持知识库
-* [x] 支持定制音色（cosyvoice2, indextts）
-* [x] 支持通过 OTA 升级固件
-* [x] 支持 Coze 工作流
-* [x] 支持 Dify 工作流
-* [x] 深度优化响应速度
-* [x] 支持用户身份验证，激活绑定设备
-* [x] 支持设备管理：解绑/禁用
-* [x] 支持后台解绑设备
-* [x] 支持用户自定义 Agent
-* [x] 国际化多语言支持：中文、英语、日语、西班牙语、印尼语等
-* [x] 支持MCP接入点
-* [x] 支持网络数据库
-* [x] 支持分布式部署
-* [x] 支持本地部署大模型
+* [x] Mendukung koneksi websocket
+* [x] Mendukung percakapan suara format PCM / Opus
+* [x] Mendukung model besar: ASR (Doubao streaming), TTS (EdgeTTS/Doubao), LLM (OpenAI API, Ollama)
+* [x] Mendukung kontrol suara untuk mengaktifkan kamera dan mengenali gambar (Zhipu API)
+* [x] Mendukung tiga mode percakapan: auto/manual/realtime, termasuk interupsi percakapan real-time
+* [x] Mendukung koneksi klien ESP32 Xiaozhi, klien Python, dan klien Android tanpa verifikasi
+* [x] Distribusi firmware OTA
+* [x] Mendukung protokol MCP (klien / lokal / server), dapat terhubung ke peta Gaode, query cuaca, dll.
+* [x] Mendukung kontrol suara untuk mengganti suara karakter
+* [x] Mendukung kontrol suara untuk mengganti peran preset
+* [x] Mendukung kontrol suara untuk memutar musik
+* [x] Mendukung deployment layanan di satu mesin
+* [x] Mendukung database lokal SQLite
+* [x] Mendukung alur kerja Coze
+* [x] Mendukung deployment Docker
 
-商务版测试/体验地址：
+## ✅ Daftar Fitur Versi Komersial
+* [x] Semua fitur versi komunitas
+* [x] Dukungan teknis dari tim pengembang
+* [x] Pembaruan fitur inti gratis di masa mendatang
+* [x] Panel admin versi komersial dengan lebih banyak opsi fitur
+* [x] Mendukung manajemen multi-pengguna
+* [x] Kustomisasi tampilan halaman selamat datang
+* [x] Kustomisasi logo hak cipta dengan merek bisnis perusahaan Anda
+* [x] Kustomisasi template peran Agent
+* [x] Mendukung lebih banyak model
+* [x] Mendukung dua protokol komunikasi: websocket dan MQTT+UDP
+* [x] Mendukung pembuatan dan pengiriman TTS streaming
+* [x] Mendukung kloning suara
+* [x] Mendukung basis pengetahuan
+* [x] Mendukung timbre kustom (cosyvoice2, indextts)
+* [x] Mendukung pembaruan firmware melalui OTA
+* [x] Mendukung alur kerja Coze
+* [x] Mendukung alur kerja Dify
+* [x] Optimasi mendalam kecepatan respons
+* [x] Mendukung autentikasi pengguna, aktivasi dan pengikatan perangkat
+* [x] Mendukung manajemen perangkat: unbind/disable
+* [x] Mendukung unbind perangkat dari panel admin
+* [x] Mendukung Agent kustom pengguna
+* [x] Dukungan multi-bahasa internasional: Mandarin, Inggris, Jepang, Spanyol, Indonesia, dll.
+* [x] Mendukung titik akses MCP
+* [x] Mendukung database jaringan
+* [x] Mendukung deployment terdistribusi
+* [x] Mendukung deployment model besar lokal
+
+Alamat uji coba / demo versi komersial:
 
 https://xiaozhi.xf.bj.cn/login
 
 ---
 
-## 🚀 快速开始
+## 🚀 Memulai Cepat
 
-### 1. 下载 Release 版
+### 1. Unduh Versi Release
 
-> 推荐直接下载 Release 版本，无需配置开发环境：
+> Disarankan langsung mengunduh versi Release, tanpa perlu mengkonfigurasi lingkungan pengembangan:
 
-👉 [点击前往 Releases 页面](https://github.com/AnimeAIChat/xiaozhi-server-go/releases)
+👉 [Klik untuk ke halaman Releases](https://github.com/AnimeAIChat/xiaozhi-server-go/releases)
 
-* 选择你平台对应的版本（如 Windows: `windows-amd64-server.exe`）
-* `.upx.exe` 是压缩版本，功能一致，体积更小，适合远程部署
+* Pilih versi yang sesuai dengan platform Anda (mis. Windows: `windows-amd64-server.exe`)
+* `.upx.exe` adalah versi terkompresi, fungsionalitas sama, ukuran lebih kecil, cocok untuk deployment jarak jauh
 
 ---
 
 
-### 2. 配置 `.config.yaml`
+### 2. Konfigurasi `.config.yaml`
 
-* 推荐复制一份 `config.yaml` 改名为 `.config.yaml`
-* 按需求配置模型、WebSocket、OTA 地址等字段
-* 不建议自行删减字段结构
+* Disarankan menyalin `config.yaml` dan mengganti namanya menjadi `.config.yaml`
+* Konfigurasikan field model, WebSocket, alamat OTA, dll. sesuai kebutuhan
+* Tidak disarankan menghapus atau menambah struktur field secara manual
 
-#### WebSocket 地址配置（必配）
+#### Konfigurasi Alamat WebSocket (Wajib)
 
 ```yaml
 web:
   websocket: ws://your-server-ip:8000
 ```
 
-用于 OTA 服务下发给客户端的连接地址，ESP32 客户端会自动从此地址连接 WS，不再手动配置。
+Digunakan sebagai alamat koneksi yang dikirimkan layanan OTA ke klien. Klien ESP32 akan otomatis terhubung ke WS dari alamat ini, tanpa perlu konfigurasi manual.
 
-注：如果是局域网调试，your-server-ip要配置为**电脑在局域网中的IP**，且终端设备和电脑在同一网段，设备才能通过这个IP地址连到电脑上的服务。
+Catatan: Jika melakukan debug di jaringan lokal, `your-server-ip` harus dikonfigurasi sebagai **IP komputer di jaringan lokal**, dan perangkat terminal serta komputer harus berada di segmen jaringan yang sama agar perangkat dapat terhubung ke layanan di komputer melalui alamat IP ini.
 
-#### OTA 地址配置（必配）
+#### Konfigurasi Alamat OTA (Wajib)
 
 ```text
 http://your-server-ip:8080/api/ota/
 ```
 
-> ESP32 固件内置 OTA 地址，确保该服务地址可用，**服务运行后可以在浏览器中输出此地址，确认服务可以访问**。
+> Firmware ESP32 memiliki alamat OTA bawaan, pastikan alamat layanan ini tersedia. **Setelah layanan berjalan, masukkan alamat ini di browser untuk memverifikasi bahwa layanan dapat diakses**.
 
-ESP32设备可以在联网界面修改OTA地址，从而在不重新刷固件的情况下，切换后端服务。
+Perangkat ESP32 dapat mengubah alamat OTA di antarmuka jaringan, sehingga dapat berpindah layanan backend tanpa perlu mem-flash firmware ulang.
 
-#### 配置ASR，LLM，TTS
+#### Konfigurasi ASR, LLM, TTS
 
-根据配置文件的格式，配置好相关模型服务，尽量不要增减字段
-
----
-
-## 💬 MCP 协议配置
-
-参考：`src/core/mcp/README.md`
+Konfigurasikan layanan model terkait sesuai format file konfigurasi, usahakan tidak menambah atau mengurangi field.
 
 ---
 
-## 🧪 源码安装与运行
+## 💬 Konfigurasi Protokol MCP
 
-### 前置条件
+Referensi: `src/core/mcp/README.md`
+
+---
+
+## 🧪 Instalasi dan Menjalankan dari Kode Sumber
+
+### Prasyarat
 
 * Go 1.24.2+
-* Windows 用户需安装 CGO 和 Opus 库（见下文）
+* Pengguna Windows perlu menginstal CGO dan library Opus (lihat di bawah)
 
 ```bash
 git clone https://github.com/AnimeAIChat/xiaozhi-server-go.git
@@ -145,9 +146,9 @@ cp config.yaml .config.yaml
 
 ---
 
-### Windows 安装 Opus 编译环境
+### Instalasi Lingkungan Kompilasi Opus di Windows
 
-安装 [MSYS2](https://www.msys2.org/)，打开MYSY2 MINGW64控制台，然后输入以下命令：
+Instal [MSYS2](https://www.msys2.org/), buka konsol MSYS2 MINGW64, kemudian masukkan perintah berikut:
 
 ```bash
 pacman -Syu
@@ -155,46 +156,46 @@ pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-go mingw-w64-x86_64-opus
 pacman -S mingw-w64-x86_64-pkg-config
 ```
 
-设置环境变量（用于 PowerShell 或系统变量）：
+Atur variabel lingkungan (untuk PowerShell atau variabel sistem):
 
 ```bash
 set PKG_CONFIG_PATH=C:\msys64\mingw64\lib\pkgconfig
 set CGO_ENABLED=1
 ```
 
-尽量在MINGW64环境下运行一次 “go run ./src/main.go” 命令，确保服务正常运行
+Sebaiknya jalankan perintah "go run ./src/main.go" sekali di lingkungan MINGW64 untuk memastikan layanan berjalan dengan normal.
 
-GO mod如果更新较慢，可以考虑设置go代理，切换国内镜像源。
+Jika pembaruan Go mod lambat, pertimbangkan untuk mengatur proxy Go dan beralih ke sumber mirror lokal.
 
 ---
 
-### 运行项目
+### Menjalankan Proyek
 
 ```bash
 go mod tidy
 go run ./src/main.go
 ```
 
-### 编译发布版本
+### Kompilasi Versi Rilis
 
 ```bash
 go build -o xiaozhi-server.exe src/main.go
 ```
 
-### 测试
-* 推荐使用ESP32硬件设备测试，可以最大程度避免兼容问题
-* 推荐使用玄凤小智Android客户端，在设置界面增加本地服务的ota地址即可。安卓版本在Release页面发布，可选择最新版本
+### Pengujian
+* Disarankan menggunakan perangkat hardware ESP32 untuk pengujian, sehingga masalah kompatibilitas dapat diminimalkan
+* Disarankan menggunakan klien Android Xuanfeng Xiaozhi, cukup tambahkan alamat OTA layanan lokal di antarmuka pengaturan. Versi Android diterbitkan di halaman Release, dapat memilih versi terbaru
   <img width="221" height="470" alt="image" src="https://github.com/user-attachments/assets/145a6612-8397-439b-9429-325855a99101" />
 
   [xiaozhi-0.0.6.apk](https://github.com/AnimeAIChat/xiaozhi-server-go/releases/download/v0.1.0/xiaozhi-0.0.6.apk)
-* 可使用其他兼容小智协议的客户端进行测试
+* Dapat menggunakan klien lain yang kompatibel dengan protokol Xiaozhi untuk pengujian
 ---
 
-## 📚 Swagger 文档
+## 📚 Dokumentasi Swagger
 
-* 打开浏览器访问：`http://localhost:8080/swagger/index.html`
+* Buka browser dan akses: `http://localhost:8080/swagger/index.html`
 
-### 更新 Swagger 文档（每次修改 API 后都要运行）
+### Memperbarui Dokumentasi Swagger (Jalankan setiap kali memodifikasi API)
 
 ```bash
 cd src
@@ -203,41 +204,41 @@ swag init -g main.go
 
 ---
 
-## ☁️ CentOS 源码部署指南
+## ☁️ Panduan Deployment Kode Sumber di CentOS
 
-> 文档见：[Centos 8 安装指南](Centos_Guide.md)
-
----
-
-## Docker 环境部署
-
-1. 准备`docker-compose.yml`,`.config.yaml`,二进制程序文件
-
-👉 [点击前往 Releases 页面](https://github.com/AnimeAIChat/xiaozhi-server-go/releases)下载二进制程序文件
-
-* 选择你平台对应的版本（默认使用 Liunx: `linux-amd64-server-upx`，如使用其他版本，需要修改docker-compose.yml）
-
-2. 三个文件放到同一目录下，配置`docker-compose.yml`,`.config.yaml`
-
-3. 运行`docker compose up -d`
+> Lihat dokumentasi: [Panduan Instalasi CentOS 8](docs/Centos_Guide.md)
 
 ---
 
-## 💬 社区支持
+## Deployment di Lingkungan Docker
 
+1. Siapkan file `docker-compose.yml`, `.config.yaml`, dan file program biner
 
-欢迎提交 Issue、PR 或新功能建议！
+👉 [Klik untuk ke halaman Releases](https://github.com/AnimeAIChat/xiaozhi-server-go/releases) untuk mengunduh file program biner
 
-<img src="https://github.com/Eric0308/assert/blob/main/xiaozhi/qr.jpg" width="450" alt="微信群二维码"> 
-<img src="https://github.com/user-attachments/assets/074c6aec-cfb5-4a68-8fc2-2d08679e366b" width="450" alt="QQ群二维码">
+* Pilih versi yang sesuai dengan platform Anda (secara default menggunakan Linux: `linux-amd64-server-upx`; jika menggunakan versi lain, perlu memodifikasi docker-compose.yml)
+
+2. Tempatkan ketiga file dalam satu direktori, konfigurasikan `docker-compose.yml` dan `.config.yaml`
+
+3. Jalankan `docker compose up -d`
+
 ---
 
-## 🛠️ 定制开发
+## 💬 Dukungan Komunitas
 
-我们接受各种定制化开发项目，如果您有特定需求，欢迎通过微信联系洽谈。
 
-<img src="https://github.com/user-attachments/assets/e2639bc3-a58a-472f-9e72-b9363f9e79a3" width="450" alt="群主二维码">
+Selamat datang untuk mengirimkan Issue, PR, atau saran fitur baru!
 
-## 📄 License
+<img src="https://github.com/Eric0308/assert/blob/main/xiaozhi/qr.jpg" width="450" alt="QR Code Grup WeChat"> 
+<img src="https://github.com/user-attachments/assets/074c6aec-cfb5-4a68-8fc2-2d08679e366b" width="450" alt="QR Code Grup QQ">
+---
 
-本仓库遵循 `Xiaozhi-server-go Open Source License`（基于 Apache 2.0 增强版）
+## 🛠️ Pengembangan Kustom
+
+Kami menerima berbagai proyek pengembangan kustom. Jika Anda memiliki kebutuhan khusus, silakan hubungi kami melalui WeChat untuk berdiskusi.
+
+<img src="https://github.com/user-attachments/assets/e2639bc3-a58a-472f-9e72-b9363f9e79a3" width="450" alt="QR Code Pemilik Grup">
+
+## 📄 Lisensi
+
+Repositori ini mengikuti `Xiaozhi-server-go Open Source License` (versi yang ditingkatkan berbasis Apache 2.0)
