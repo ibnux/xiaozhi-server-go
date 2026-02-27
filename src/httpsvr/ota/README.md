@@ -1,28 +1,28 @@
-# OTA模块
+# Modul OTA
 
-## 目录结构
-- `ota.go`：OTA服务默认实现
-- `interfaces.go`：OTA服务接口定义
-- `server.go`：OTA HTTP服务实现
-- `README.md`：模块说明文档
+## Struktur Direktori
+- `ota.go`: Implementasi default layanan OTA
+- `interfaces.go`: Definisi antarmuka layanan OTA
+- `server.go`: Implementasi layanan HTTP OTA
+- `README.md`: Dokumen penjelasan modul
 
-## 用法说明
-1. 在主程序中引入OTA服务模块。
-2. 初始化OTA服务。
-3. 配置`UpdateURL`参数，指定WebSocket地址。
+## Cara Penggunaan
+1. Import modul layanan OTA di program utama.
+2. Inisialisasi layanan OTA.
+3. Konfigurasikan parameter `UpdateURL`, tentukan alamat WebSocket.
 
-## OTA接口说明
-- `GET /api/ota/`：返回OTA接口运行状态及WebSocket地址。
-- `POST /api/ota/`：接收设备请求，返回服务器时间、固件信息和WebSocket地址。
+## Penjelasan Antarmuka OTA
+- `GET /api/ota/`: Mengembalikan status operasi antarmuka OTA dan alamat WebSocket.
+- `POST /api/ota/`: Menerima permintaan perangkat, mengembalikan waktu server, informasi firmware, dan alamat WebSocket.
 
-## OTA接口测试（Apifox）
+## Pengujian Antarmuka OTA (Apifox)
 
-你可以使用 [Apifox](https://apifox.com/) 对OTA接口进行测试。
+Anda dapat menggunakan [Apifox](https://apifox.com/) untuk menguji antarmuka OTA.
 
-### 1. 测试GET接口
-- 方法：GET
-- URL：`http://localhost:8080/api/ota/`
-- 预期返回：
+### 1. Pengujian Antarmuka GET
+- Metode: GET
+- URL: `http://localhost:8080/api/ota/`
+- Respons yang diharapkan:
 ```json
 {
   "status": "ok",
@@ -30,17 +30,17 @@
 }
 ```
 
-### 2. 测试POST接口
-- 方法：POST
-- URL：`http://localhost:8080/api/ota/`
-- Body类型：JSON
-- 示例请求体：
+### 2. Pengujian Antarmuka POST
+- Metode: POST
+- URL: `http://localhost:8080/api/ota/`
+- Tipe Body: JSON
+- Contoh request body:
 ```json
 {
   "device_id": "your_device_id"
 }
 ```
-- 预期返回：
+- Respons yang diharapkan:
 ```json
 {
   "server_time": "2024-01-01T12:00:00Z",
@@ -49,10 +49,10 @@
 }
 ```
 
-### 3. 下载 
-- URL：`http://localhost:8080/ota_bin/{*.bin}`
+### 3. Unduhan
+- URL: `http://localhost:8080/ota_bin/{*.bin}`
 
-### 4. 跨域说明
-OTA服务已支持CORS，便于前端或第三方工具直接调用。
+### 4. Keterangan CORS
+Layanan OTA sudah mendukung CORS, sehingga memudahkan frontend atau alat pihak ketiga untuk langsung memanggil.
 
-如需进一步定制接口或返回内容，请根据实际需求修改`server.go`。
+Jika perlu menyesuaikan antarmuka atau konten respons lebih lanjut, silakan modifikasi `server.go` sesuai kebutuhan aktual.
