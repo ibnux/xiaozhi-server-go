@@ -39,7 +39,7 @@ func NewDefaultInitConfig() *Config {
 	config := &Config{}
 	config.setDefaults()
 
-	// 设置默认的模块选择（与配置文件完全一致）
+	// Atur pilihan modul default (sesuai dengan file konfigurasi)
 	config.SelectedModule = map[string]string{
 		"ASR":   "DoubaoASR",
 		"TTS":   "EdgeTTS",
@@ -47,7 +47,7 @@ func NewDefaultInitConfig() *Config {
 		"VLLLM": "ChatGLMVLLM",
 	}
 
-	// 设置默认的ASR配置（与配置文件完全一致）
+	// Atur konfigurasi ASR default (sesuai dengan file konfigurasi)
 	config.ASR = map[string]ASRConfig{
 		"DoubaoASR": {
 			"type":         "doubao",
@@ -57,7 +57,7 @@ func NewDefaultInitConfig() *Config {
 		},
 	}
 
-	// 设置默认的TTS配置（与配置文件完全一致）
+	// Atur konfigurasi TTS default (sesuai dengan file konfigurasi)
 	config.TTS = map[string]TTSConfig{
 		"EdgeTTS": {
 			Type:      "edge",
@@ -76,7 +76,7 @@ func NewDefaultInitConfig() *Config {
 		},
 	}
 
-	// 设置默认的LLM配置（与配置文件完全一致）
+	// Atur konfigurasi LLM default (sesuai dengan file konfigurasi)
 	config.LLM = map[string]LLMConfig{
 		"ChatGLMLLM": {
 			Type:      "openai",
@@ -86,7 +86,7 @@ func NewDefaultInitConfig() *Config {
 		},
 	}
 
-	// 设置默认的VLLLM配置（与配置文件完全一致）
+	// Atur konfigurasi VLLLM default (sesuai dengan file konfigurasi)
 	config.VLLLM = map[string]VLLMConfig{
 		"ChatGLMVLLM": {
 			Type:        "openai",
@@ -108,7 +108,7 @@ func NewDefaultInitConfig() *Config {
 		},
 	}
 
-	// 设置其他配置（与配置文件完全一致）
+	// Atur konfigurasi lainnya (sesuai dengan file konfigurasi)
 	config.DeleteAudio = false
 	config.SaveTTSAudio = false
 	config.SaveUserAudio = false
