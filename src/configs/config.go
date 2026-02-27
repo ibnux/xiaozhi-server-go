@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// Config 主配置结构
+// Config struktur konfigurasi utama
 type Config struct {
 	Server struct {
 		IP    string `yaml:"ip" json:"ip"`
@@ -17,13 +17,13 @@ type Config struct {
 		Auth  struct {
 			Store struct {
 				Type   string `yaml:"type" json:"type"`     // memory/file/redis
-				Expiry int    `yaml:"expiry" json:"expiry"` // 过期时间(小时)
+				Expiry int    `yaml:"expiry" json:"expiry"` // Waktu kedaluwarsa (jam)
 			} `yaml:"store" json:"store"`
 		} `yaml:"auth" json:"auth"`
 		ServerVersion string `yaml:"server_version" json:"server_version"`
 	} `yaml:"server" json:"server"`
 
-	// 传输层配置
+	// Konfigurasi lapisan transport
 	Transport struct {
 		WebSocket struct {
 			Enabled bool   `yaml:"enabled" json:"enabled"`
@@ -40,7 +40,7 @@ type Config struct {
 			} `yaml:"mqtt" json:"mqtt"`
 			UDP struct {
 				IP                string `yaml:"ip" json:"ip"`
-				ShowPort          int    `yaml:"show_port" json:"show_port"` // 显示端口
+				ShowPort          int    `yaml:"show_port" json:"show_port"` // Port tampilan
 				Port              int    `yaml:"port" json:"port"`
 				SessionTimeout    string `yaml:"session_timeout" json:"session_timeout"`
 				MaxPacketSize     int    `yaml:"max_packet_size" json:"max_packet_size"`
@@ -60,17 +60,17 @@ type Config struct {
 		StaticDir    string `yaml:"static_dir" json:"static_dir"`
 		Websocket    string `yaml:"websocket" json:"websocket"`
 		VisionURL    string `yaml:"vision" json:"vision"`
-		ActivateText string `yaml:"activate_text" json:"activate_text"` // 发送激活码时携带的文本
+		ActivateText string `yaml:"activate_text" json:"activate_text"` // Teks yang disertakan saat mengirim kode aktivasi
 	} `yaml:"web" json:"web"`
 
 	DefaultPrompt   string        `yaml:"prompt"             json:"prompt"`
-	Roles           []Role        `yaml:"roles"              json:"roles"` // 角色列表
+	Roles           []Role        `yaml:"roles"              json:"roles"` // Daftar peran
 	DeleteAudio     bool          `yaml:"delete_audio"       json:"delete_audio"`
 	QuickReply      bool          `yaml:"quick_reply"        json:"quick_reply"`
 	QuickReplyWords []string      `yaml:"quick_reply_words"  json:"quick_reply_words"`
-	LocalMCPFun     []LocalMCPFun `yaml:"local_mcp_fun"      json:"local_mcp_fun"` // 本地MCP函数映射
-	SaveTTSAudio    bool          `yaml:"save_tts_audio"  json:"save_tts_audio"`   // 是否保存TTS音频文件
-	SaveUserAudio   bool          `yaml:"save_user_audio" json:"save_user_audio"`  // 是否保存用户音频文件
+	LocalMCPFun     []LocalMCPFun `yaml:"local_mcp_fun"      json:"local_mcp_fun"` // Pemetaan fungsi MCP lokal
+	SaveTTSAudio    bool          `yaml:"save_tts_audio"  json:"save_tts_audio"`   // Apakah file audio TTS disimpan
+	SaveUserAudio   bool          `yaml:"save_user_audio" json:"save_user_audio"`  // Apakah file audio pengguna disimpan
 
 	SelectedModule map[string]string `yaml:"selected_module" json:"selected_module"`
 
@@ -86,15 +86,15 @@ type Config struct {
 }
 
 type LocalMCPFun struct {
-	Name        string `yaml:"name"         json:"name"`        // 函数名称
-	Description string `yaml:"description"  json:"description"` // 函数描述
-	Enabled     bool   `yaml:"enabled"      json:"enabled"`     // 是否启用
+	Name        string `yaml:"name"         json:"name"`        // Nama fungsi
+	Description string `yaml:"description"  json:"description"` // Deskripsi fungsi
+	Enabled     bool   `yaml:"enabled"      json:"enabled"`     // Apakah diaktifkan
 }
 
 type Role struct {
-	Name        string `yaml:"name"         json:"name"`        // 角色名称
-	Description string `yaml:"description"  json:"description"` // 角色描述
-	Enabled     bool   `yaml:"enabled"      json:"enabled"`     // 是否启用
+	Name        string `yaml:"name"         json:"name"`        // Nama peran
+	Description string `yaml:"description"  json:"description"` // Deskripsi peran
+	Enabled     bool   `yaml:"enabled"      json:"enabled"`     // Apakah diaktifkan
 }
 
 type PoolConfig struct {
@@ -110,64 +110,64 @@ type McpPoolConfig struct {
 	PoolCheckInterval int `yaml:"pool_check_interval"`
 }
 
-// ASRConfig ASR配置结构
+// ASRConfig struktur konfigurasi ASR
 type ASRConfig map[string]interface{}
 
 type VoiceInfo struct {
-	Name        string `yaml:"name"         json:"name"`         // 语音名称，对应tts的音色字符串，如 zh_female_wanwanxiaohe_moon_bigtts
-	Language    string `yaml:"language"     json:"language"`     // 语言，标记语种，用于前端选择
-	DisplayName string `yaml:"display_name" json:"display_name"` // 显示名称，前端显示用，如湾湾小何
-	Sex         string `yaml:"sex"          json:"sex"`          // 性别，男/女
-	Description string `yaml:"description"  json:"description"`  // 音色的描述信息
-	AudioURL    string `yaml:"audio_url"    json:"audio_url"`    // 音频URL，用于试听
+	Name        string `yaml:"name"         json:"name"`         // Nama suara, sesuai dengan string timbre TTS, mis. zh_female_wanwanxiaohe_moon_bigtts
+	Language    string `yaml:"language"     json:"language"`     // Bahasa, menandai jenis bahasa, digunakan untuk pemilihan frontend
+	DisplayName string `yaml:"display_name" json:"display_name"` // Nama tampilan untuk frontend, mis. WanWan XiaoHe
+	Sex         string `yaml:"sex"          json:"sex"`          // Jenis kelamin, Laki-laki/Perempuan
+	Description string `yaml:"description"  json:"description"`  // Deskripsi timbre suara
+	AudioURL    string `yaml:"audio_url"    json:"audio_url"`    // URL audio untuk pratinjau
 }
 
-// TTSConfig TTS配置结构
+// TTSConfig struktur konfigurasi TTS
 type TTSConfig struct {
-	Type            string      `yaml:"type"             json:"type"`             // TTS类型
-	Voice           string      `yaml:"voice"            json:"voice"`            // 语音名称
-	Format          string      `yaml:"format"           json:"format"`           // 输出格式
-	OutputDir       string      `yaml:"output_dir"       json:"output_dir"`       // 输出目录
-	AppID           string      `yaml:"appid"            json:"appid"`            // 应用ID
-	Token           string      `yaml:"token"            json:"token"`            // API密钥
-	Cluster         string      `yaml:"cluster"          json:"cluster"`          // 集群信息
-	SupportedVoices []VoiceInfo `yaml:"supported_voices" json:"supported_voices"` // 支持的语音列表
+	Type            string      `yaml:"type"             json:"type"`             // Tipe TTS
+	Voice           string      `yaml:"voice"            json:"voice"`            // Nama suara
+	Format          string      `yaml:"format"           json:"format"`           // Format output
+	OutputDir       string      `yaml:"output_dir"       json:"output_dir"`       // Direktori output
+	AppID           string      `yaml:"appid"            json:"appid"`            // ID aplikasi
+	Token           string      `yaml:"token"            json:"token"`            // Kunci API
+	Cluster         string      `yaml:"cluster"          json:"cluster"`          // Informasi cluster
+	SupportedVoices []VoiceInfo `yaml:"supported_voices" json:"supported_voices"` // Daftar suara yang didukung
 }
 
-// LLMConfig LLM配置结构
+// LLMConfig struktur konfigurasi LLM
 type LLMConfig struct {
-	Type        string                 `yaml:"type"        json:"type"`        // LLM类型
-	ModelName   string                 `yaml:"model_name"  json:"model_name"`  // 模型名称
-	BaseURL     string                 `yaml:"url"         json:"url"`         // API地址
-	APIKey      string                 `yaml:"api_key"     json:"api_key"`     // API密钥
-	Temperature float64                `yaml:"temperature" json:"temperature"` // 温度参数
-	MaxTokens   int                    `yaml:"max_tokens"  json:"max_tokens"`  // 最大令牌数
-	TopP        float64                `yaml:"top_p"       json:"top_p"`       // TopP参数
-	Extra       map[string]interface{} `yaml:",inline"     json:"extra"`       // 额外配置
+	Type        string                 `yaml:"type"        json:"type"`        // Tipe LLM
+	ModelName   string                 `yaml:"model_name"  json:"model_name"`  // Nama model
+	BaseURL     string                 `yaml:"url"         json:"url"`         // Alamat API
+	APIKey      string                 `yaml:"api_key"     json:"api_key"`     // Kunci API
+	Temperature float64                `yaml:"temperature" json:"temperature"` // Parameter suhu
+	MaxTokens   int                    `yaml:"max_tokens"  json:"max_tokens"`  // Jumlah token maksimum
+	TopP        float64                `yaml:"top_p"       json:"top_p"`       // Parameter TopP
+	Extra       map[string]interface{} `yaml:",inline"     json:"extra"`       // Konfigurasi tambahan
 }
 
-// SecurityConfig 图片安全配置结构
+// SecurityConfig struktur konfigurasi keamanan gambar
 type SecurityConfig struct {
-	MaxFileSize       int64    `yaml:"max_file_size"      json:"max_file_size"`      // 最大文件大小（字节）
-	MaxPixels         int64    `yaml:"max_pixels"         json:"max_pixels"`         // 最大像素数量
-	MaxWidth          int      `yaml:"max_width"          json:"max_width"`          // 最大宽度
-	MaxHeight         int      `yaml:"max_height"         json:"max_height"`         // 最大高度
-	AllowedFormats    []string `yaml:"allowed_formats"    json:"allowed_formats"`    // 允许的图片格式
-	EnableDeepScan    bool     `yaml:"enable_deep_scan"   json:"enable_deep_scan"`   // 启用深度安全扫描
-	ValidationTimeout string   `yaml:"validation_timeout" json:"validation_timeout"` // 验证超时时间
+	MaxFileSize       int64    `yaml:"max_file_size"      json:"max_file_size"`      // Ukuran file maksimum (byte)
+	MaxPixels         int64    `yaml:"max_pixels"         json:"max_pixels"`         // Jumlah piksel maksimum
+	MaxWidth          int      `yaml:"max_width"          json:"max_width"`          // Lebar maksimum
+	MaxHeight         int      `yaml:"max_height"         json:"max_height"`         // Tinggi maksimum
+	AllowedFormats    []string `yaml:"allowed_formats"    json:"allowed_formats"`    // Format gambar yang diizinkan
+	EnableDeepScan    bool     `yaml:"enable_deep_scan"   json:"enable_deep_scan"`   // Aktifkan pemindaian keamanan mendalam
+	ValidationTimeout string   `yaml:"validation_timeout" json:"validation_timeout"` // Waktu tunggu validasi
 }
 
-// VLLMConfig VLLLM配置结构（视觉语言大模型）
+// VLLMConfig struktur konfigurasi VLLLM (Model Bahasa Visual Besar)
 type VLLMConfig struct {
-	Type        string                 `yaml:"type"        json:"type"`        // API类型，复用LLM的类型
-	ModelName   string                 `yaml:"model_name"  json:"model_name"`  // 模型名称，使用支持视觉的模型
-	BaseURL     string                 `yaml:"url"         json:"url"`         // API地址
-	APIKey      string                 `yaml:"api_key"     json:"api_key"`     // API密钥
-	Temperature float64                `yaml:"temperature" json:"temperature"` // 温度参数
-	MaxTokens   int                    `yaml:"max_tokens"  json:"max_tokens"`  // 最大令牌数
-	TopP        float64                `yaml:"top_p"       json:"top_p"`       // TopP参数
-	Security    SecurityConfig         `yaml:"security"    json:"security"`    // 图片安全配置
-	Extra       map[string]interface{} `yaml:",inline"     json:"extra"`       // 额外配置
+	Type        string                 `yaml:"type"        json:"type"`        // Tipe API, menggunakan tipe LLM
+	ModelName   string                 `yaml:"model_name"  json:"model_name"`  // Nama model yang mendukung visual
+	BaseURL     string                 `yaml:"url"         json:"url"`         // Alamat API
+	APIKey      string                 `yaml:"api_key"     json:"api_key"`     // Kunci API
+	Temperature float64                `yaml:"temperature" json:"temperature"` // Parameter suhu
+	MaxTokens   int                    `yaml:"max_tokens"  json:"max_tokens"`  // Jumlah token maksimum
+	TopP        float64                `yaml:"top_p"       json:"top_p"`       // Parameter TopP
+	Security    SecurityConfig         `yaml:"security"    json:"security"`    // Konfigurasi keamanan gambar
+	Extra       map[string]interface{} `yaml:",inline"     json:"extra"`       // Konfigurasi tambahan
 }
 
 var (
@@ -188,14 +188,14 @@ func (cfg *Config) SaveToDB(dbi ConfigDBInterface) error {
 	return dbi.UpdateServerConfig(data)
 }
 
-// LoadConfig 加载配置
-// 完全从数据库加载配置，如果数据库为空则使用默认配置并初始化数据库
+// LoadConfig memuat konfigurasi
+// Sepenuhnya memuat konfigurasi dari database; jika database kosong, gunakan konfigurasi default dan inisialisasi database
 func LoadConfig(dbi ConfigDBInterface) (*Config, string, error) {
 	bUseDatabaseCfg := true
-	// 尝试从数据库加载配置
+	// Coba muat konfigurasi dari database
 	cfgStr, err := dbi.LoadServerConfig()
 	if err != nil {
-		fmt.Println("加载服务器配置失败:", err)
+		fmt.Println("Gagal memuat konfigurasi server:", err)
 		return nil, "", err
 	}
 
@@ -212,7 +212,7 @@ func LoadConfig(dbi ConfigDBInterface) (*Config, string, error) {
 		}
 	}
 
-	// 尝试从文件读取
+	// Coba baca dari file
 	path = ".config.yaml"
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		path = "config.yaml"
@@ -220,7 +220,7 @@ func LoadConfig(dbi ConfigDBInterface) (*Config, string, error) {
 
 	data, err := os.ReadFile(path)
 	if err != nil {
-		// 读取配置文件失败，使用默认配置
+		// Gagal membaca file konfigurasi, gunakan konfigurasi default
 		config = NewDefaultInitConfig()
 		data, _ = yaml.Marshal(config)
 	} else {
@@ -231,7 +231,7 @@ func LoadConfig(dbi ConfigDBInterface) (*Config, string, error) {
 
 	err = dbi.InitServerConfig(string(data))
 	if err != nil {
-		fmt.Println("初始化服务器配置到数据库失败:", err)
+		fmt.Println("Gagal menginisialisasi konfigurasi server ke database:", err)
 	}
 	config = CheckAndModifyConfig(config)
 	Cfg = config
@@ -239,7 +239,7 @@ func LoadConfig(dbi ConfigDBInterface) (*Config, string, error) {
 }
 
 func LoadProvidersFromDB(dbi ConfigDBInterface, cfg *Config) {
-	// 加载ASR提供者配置
+	// Muat konfigurasi provider ASR
 	asrData := dbi.LoadProviderData("ASR", 0)
 	if asrData != nil {
 		//fmt.Println("ASR Providers:", asrData)
@@ -251,7 +251,7 @@ func LoadProvidersFromDB(dbi ConfigDBInterface, cfg *Config) {
 			}
 		}
 	}
-	// 加载TTS提供者配置
+	// Muat konfigurasi provider TTS
 	ttsData := dbi.LoadProviderData("TTS", 0)
 	if ttsData != nil {
 		//fmt.Println("TTS Providers:", ttsData)
@@ -263,7 +263,7 @@ func LoadProvidersFromDB(dbi ConfigDBInterface, cfg *Config) {
 			}
 		}
 	}
-	// 加载LLM提供者配置
+	// Muat konfigurasi provider LLM
 	llmData := dbi.LoadProviderData("LLM", 0)
 	if llmData != nil {
 		//fmt.Println("LLM Providers:", llmData)
@@ -275,7 +275,7 @@ func LoadProvidersFromDB(dbi ConfigDBInterface, cfg *Config) {
 			}
 		}
 	}
-	// 加载VLLLM提供者配置
+	// Muat konfigurasi provider VLLLM
 	vllmData := dbi.LoadProviderData("VLLLM", 0)
 	if vllmData != nil {
 		//fmt.Println("VLLLM Providers:", vllmData)
@@ -291,18 +291,18 @@ func LoadProvidersFromDB(dbi ConfigDBInterface, cfg *Config) {
 }
 
 func CheckAndModifyConfig(cfg *Config) *Config {
-	// 检查Cfg.LocalMCPFun全部小写并去除空格
+	// Periksa Cfg.LocalMCPFun semua huruf kecil dan hapus spasi
 	if cfg.LocalMCPFun == nil {
 		cfg.LocalMCPFun = []LocalMCPFun{}
 	}
-	fmt.Printf("检查配置: LocalMCPFun cnt %d\n", len(cfg.LocalMCPFun))
+	fmt.Printf("Memeriksa konfigurasi: LocalMCPFun cnt %d\n", len(cfg.LocalMCPFun))
 	if len(cfg.LocalMCPFun) < 10 {
 		for i := 0; i < len(cfg.LocalMCPFun); i++ {
 			cfg.LocalMCPFun[i].Name = strings.ToLower(strings.TrimSpace(cfg.LocalMCPFun[i].Name))
 			cfg.LocalMCPFun[i].Description = strings.ToLower(strings.TrimSpace(cfg.LocalMCPFun[i].Description))
 		}
 	}
-	// 检查默认配置的ASR,LLM,TTS和VLLLM是否存在
+	// Periksa apakah konfigurasi default ASR, LLM, TTS dan VLLLM ada
 	if cfg.SelectedModule == nil {
 		cfg.SelectedModule = map[string]string{}
 	}
@@ -318,26 +318,26 @@ func CheckAndModifyConfig(cfg *Config) *Config {
 	if cfg.TTS == nil {
 		cfg.TTS = map[string]TTSConfig{}
 	}
-	fmt.Printf("检查配置: LLM:%d, VLLLM:%d, ASR:%d, TTS:%d\n", len(cfg.LLM), len(cfg.VLLLM), len(cfg.ASR), len(cfg.TTS))
-	fmt.Println("检查配置: SelectedModule", cfg.SelectedModule)
-	// 如果SelectedModule没有选择或者选择的不存在，则选择第一个
+	fmt.Printf("Memeriksa konfigurasi: LLM:%d, VLLLM:%d, ASR:%d, TTS:%d\n", len(cfg.LLM), len(cfg.VLLLM), len(cfg.ASR), len(cfg.TTS))
+	fmt.Println("Memeriksa konfigurasi: SelectedModule", cfg.SelectedModule)
+	// Jika SelectedModule tidak dipilih atau yang dipilih tidak ada, pilih yang pertama
 	llmName, ok := cfg.SelectedModule["LLM"]
 	_, exists := cfg.LLM[llmName]
 	if !ok || llmName == "" || !exists {
-		// 选择LLM中有的作为默认
+		// Pilih LLM yang tersedia sebagai default
 		for name := range cfg.LLM {
 			cfg.SelectedModule["LLM"] = name
-			fmt.Println("未设置默认LLM或设置的LLM不存在，已设置为", name)
+			fmt.Println("LLM default tidak diatur atau LLM yang diatur tidak ada, telah diatur ke", name)
 			break
 		}
 	}
 	defaulCfg := NewDefaultInitConfig()
 	if len(cfg.LLM) == 0 {
-		fmt.Println("警告: 当前没有可用的LLM提供者，使用默认配置！")
+		fmt.Println("Peringatan: Tidak ada provider LLM yang tersedia, menggunakan konfigurasi default!")
 		cfg.LLM = defaulCfg.LLM
 		for name := range cfg.LLM {
 			cfg.SelectedModule["LLM"] = name
-			fmt.Println("已设置默认LLM为", name)
+			fmt.Println("LLM default telah diatur ke", name)
 			break
 		}
 	}
@@ -345,41 +345,41 @@ func CheckAndModifyConfig(cfg *Config) *Config {
 	vlllmName, ok := cfg.SelectedModule["VLLLM"]
 	_, exists = cfg.VLLLM[vlllmName]
 	if !ok || vlllmName == "" || !exists {
-		// 选择VLLLM中有的作为默认
+		// Pilih VLLLM yang tersedia sebagai default
 		for name := range cfg.VLLLM {
 			cfg.SelectedModule["VLLLM"] = name
-			fmt.Println("未设置默认VLLLM或设置的VLLLM不存在，已设置为", name)
+			fmt.Println("VLLLM default tidak diatur atau VLLLM yang diatur tidak ada, telah diatur ke", name)
 			break
 		}
 	}
 	if len(cfg.VLLLM) == 0 {
-		fmt.Println("警告: 当前没有可用的VLLLM提供者，使用默认配置！")
+		fmt.Println("Peringatan: Tidak ada provider VLLLM yang tersedia, menggunakan konfigurasi default!")
 		cfg.VLLLM = defaulCfg.VLLLM
 		for name := range cfg.VLLLM {
 			cfg.SelectedModule["VLLLM"] = name
-			fmt.Println("已设置默认VLLLM为", name)
+			fmt.Println("VLLLM default telah diatur ke", name)
 			break
 		}
 	}
 
 	asrName, ok := cfg.SelectedModule["ASR"]
 	_, exists = cfg.ASR[asrName]
-	// ASRConfig 是 map[string]interface{}，只判断 key 是否存在和 name 非空
+	// ASRConfig adalah map[string]interface{}, hanya periksa apakah key ada dan name tidak kosong
 	if !ok || asrName == "" || !exists {
-		// 选择ASR中有的作为默认
+		// Pilih ASR yang tersedia sebagai default
 		for name := range cfg.ASR {
 			cfg.SelectedModule["ASR"] = name
-			fmt.Println("未设置默认ASR或设置的ASR不存在，已设置为", name)
+			fmt.Println("ASR default tidak diatur atau ASR yang diatur tidak ada, telah diatur ke", name)
 			break
 		}
 	}
 
 	if len(cfg.ASR) == 0 {
-		fmt.Println("警告: 当前没有可用的ASR提供者，使用默认配置！")
+		fmt.Println("Peringatan: Tidak ada provider ASR yang tersedia, menggunakan konfigurasi default!")
 		cfg.ASR = defaulCfg.ASR
 		for name := range cfg.ASR {
 			cfg.SelectedModule["ASR"] = name
-			fmt.Println("已设置默认ASR为", name)
+			fmt.Println("ASR default telah diatur ke", name)
 			break
 		}
 	}
@@ -387,20 +387,20 @@ func CheckAndModifyConfig(cfg *Config) *Config {
 	ttsName, ok := cfg.SelectedModule["TTS"]
 	_, exists = cfg.TTS[ttsName]
 	if !ok || ttsName == "" || !exists {
-		// 选择TTS中有的作为默认
+		// Pilih TTS yang tersedia sebagai default
 		for name := range cfg.TTS {
 			cfg.SelectedModule["TTS"] = name
-			fmt.Println("未设置默认TTS或设置的TTS不存在，已设置为", name)
+			fmt.Println("TTS default tidak diatur atau TTS yang diatur tidak ada, telah diatur ke", name)
 			break
 		}
 	}
 
 	if len(cfg.TTS) == 0 {
-		fmt.Println("警告: 当前没有可用的TTS提供者，使用默认配置！")
+		fmt.Println("Peringatan: Tidak ada provider TTS yang tersedia, menggunakan konfigurasi default!")
 		cfg.TTS = defaulCfg.TTS
 		for name := range cfg.TTS {
 			cfg.SelectedModule["TTS"] = name
-			fmt.Println("已设置默认TTS为", name)
+			fmt.Println("TTS default telah diatur ke", name)
 			break
 		}
 	}
